@@ -1,2 +1,2 @@
-# mg-bot-api-client-js
-JS client for MG Bot API
+# retailCRM Message Gateway Bot API JS client
+
