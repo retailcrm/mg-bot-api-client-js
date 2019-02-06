@@ -8,7 +8,7 @@ npm install --save mg-bot-api-client-js
 ```
 In your file
 ```
-var RetailcrmBotApiClient = require('retailcrm-bot-api-client');
+var RetailcrmBotApiClient = require('mg-bot-api-client-js');
 ```
 # Usage
 #### Get users
