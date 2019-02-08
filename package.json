@@ -2,7 +2,7 @@
   "name": "mg-api-client",
   "description": "JS client for retailCRM Bot API",
   "tags": ["API", "retailCRM", "Bot", "Chat"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "test": "./node_modules/.bin/_mocha ./tests/."
   },
