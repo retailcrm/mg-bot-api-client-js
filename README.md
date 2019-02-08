@@ -17,7 +17,7 @@ var api = new RetailcrmBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
-});
+}).getClient();
 
 api.getUsers()
     .then(function (users) {
@@ -34,14 +34,14 @@ var api = new RetailcrmBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
-});
+}).getClient();
 
 var message = {
     chat_id: 1,
     content: 'Text message',
     scope: 'public',
     type: 'text'
-}
+};
 
 api.sendMessage(message)
     .then(function (result) {

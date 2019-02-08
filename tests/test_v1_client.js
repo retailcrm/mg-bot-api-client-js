@@ -1,54 +1,19 @@
 var nock = require('nock');
 var chai = require('chai');
-var RetailcrmBotApiClient = require('./index');
+var RetailcrmBotApiClient = require('../index');
 
-describe('#Constructor', function () {
-    it('Empty url', function () {
-        chai.expect(function() {
-            new RetailcrmBotApiClient({token: 'test_token'});
-        }).to.throw('Url is required');
-    });
-
-    it('Incorrect url', function () {
-        chai.expect(function() {
-            new RetailcrmBotApiClient({
-                host: 'http://test.retailcrm.ru',
-                token: 'test_token'
-            });
-        }).to.throw('HTTPS required');
-    });
-
-    it('Empty token', function () {
-        chai.expect(function() {
-            new RetailcrmBotApiClient({host: 'https://test.retailcrm.ru',});
-        }).to.throw('Token is required');
-    });
-
-    it('Set the default options', function () {
-        var api = new RetailcrmBotApiClient({
-            host: 'https://test.retailcrm.ru',
-            token: 'xxxxxxxxxxxxxxxxxxxxxxxx'
-        });
-
-        chai.expect(api.apiVersion).to.equal('v1');
-        chai.expect(api.token).to.equal('xxxxxxxxxxxxxxxxxxxxxxxx');
-        chai.expect(api.getToken()).to.equal('xxxxxxxxxxxxxxxxxxxxxxxx');
-        chai.expect(api.host).to.equal('test.retailcrm.ru');
-    });
-});
-
-describe('#Requests', function() {
+describe('#API client v1', function() {
     beforeEach(function() {
         nock.cleanAll();
     });
 
     var retailcrm = new RetailcrmBotApiClient({
-        host: 'https://test.retailcrm.ru',
+        host: 'https://api.example.com',
         token: 'test_token'
-    });
+    }).getClient();
 
     it('Get bots list', function() {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/bots').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/bots').reply(200, [{
             id: 1,
             isActive: true
         }]);
@@ -60,7 +25,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty bots list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/bots').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/bots').reply(200, []);
 
         retailcrm.getBots().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -69,7 +34,7 @@ describe('#Requests', function() {
     });
 
     it('Get channels list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/channels').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/channels').reply(200, [{
             id: 1
         }]);
 
@@ -80,7 +45,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty channels list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/channels').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/channels').reply(200, []);
 
         retailcrm.getChannels().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -89,7 +54,7 @@ describe('#Requests', function() {
     });
 
     it('Get chats list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/chats').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/chats').reply(200, [{
             author_id: 1,
             id: 1
         }]);
@@ -101,7 +66,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty chats list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/chats').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/chats').reply(200, []);
 
         retailcrm.getChats().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -110,7 +75,7 @@ describe('#Requests', function() {
     });
 
     it('Get customers list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/customers').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/customers').reply(200, [{
             external_id: 1,
             channel_id: 1,
             id: 1
@@ -123,7 +88,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty customers list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/customers').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/customers').reply(200, []);
 
         retailcrm.getCustomers().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -132,7 +97,7 @@ describe('#Requests', function() {
     });
 
     it('Get dialogs list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/dialogs').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/dialogs').reply(200, [{
             begin_message_id: 1,
             id: 1
         }]);
@@ -144,7 +109,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty dialogs list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/dialogs').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/dialogs').reply(200, []);
 
         retailcrm.getDialogs().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -153,7 +118,7 @@ describe('#Requests', function() {
     });
 
     it('Get members list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/members').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/members').reply(200, [{
             id: 1
         }]);
 
@@ -164,7 +129,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty members list', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/members').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/members').reply(200, []);
 
         retailcrm.getMembers().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -173,7 +138,7 @@ describe('#Requests', function() {
     });
 
     it('Assign dialog', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').patch('/dialogs/1/assign').reply(200, {
+        nock('https://api.example.com/api/bot/v1').patch('/dialogs/1/assign').reply(200, {
             is_reassign: true,
             responsible: {
                 id: 1
@@ -192,7 +157,7 @@ describe('#Requests', function() {
     });
 
     it('Close dialog', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').delete('/dialogs/1/close').reply(200, {});
+        nock('https://api.example.com/api/bot/v1').delete('/dialogs/1/close').reply(200, {});
 
         retailcrm.closeDialog(1).then(function (value) {
             chai.expect(value).to.be.empty;
@@ -204,11 +169,11 @@ describe('#Requests', function() {
     });
 
     it('Send message', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').post('/messages', {
+        nock('https://api.example.com/api/bot/v1').post('/messages', {
             chat_id: 1,
             scope: 'public',
             type: 'text',
-            content: 'test message'
+            content: 'tests message'
         }).reply(200, {
             message_id: 1
         });
@@ -217,7 +182,7 @@ describe('#Requests', function() {
             chat_id: 1,
             scope: 'public',
             type: 'text',
-            content: 'test message'
+            content: 'tests message'
         }).then(function (value) {
             chai.expect(value).to.be.an('object');
             chai.expect(value).to.be.not.empty;
@@ -229,7 +194,7 @@ describe('#Requests', function() {
     });
 
     it('Get messages', function() {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/messages').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/messages').reply(200, [{
             id: 1,
             chat_id: 1,
             from: {
@@ -244,7 +209,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty messages', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/messages').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/messages').reply(200, []);
 
         retailcrm.getMessages().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -253,7 +218,7 @@ describe('#Requests', function() {
     });
 
     it('Delete message', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').delete('/messages/1').reply(200, {});
+        nock('https://api.example.com/api/bot/v1').delete('/messages/1').reply(200, {});
 
         retailcrm.deleteMessage(1).then(function (value) {
             chai.expect(value).to.be.empty;
@@ -265,12 +230,12 @@ describe('#Requests', function() {
     });
 
     it('Edit message', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').patch('/messages/1', {
-            content: 'test message'
+        nock('https://api.example.com/api/bot/v1').patch('/messages/1', {
+            content: 'tests message'
         }).reply(200, {});
 
         retailcrm.editMessage(1, {
-            content: 'test message'
+            content: 'tests message'
         }).then(function (value) {
             chai.expect(value).to.be.empty;
         });
@@ -281,7 +246,7 @@ describe('#Requests', function() {
     });
 
     it('Get commands', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/my/commands').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/my/commands').reply(200, [{
             id: 1,
             name: 'Command name'
         }]);
@@ -293,7 +258,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty commands', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/my/commands').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/my/commands').reply(200, []);
 
         retailcrm.getCommands().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -302,7 +267,7 @@ describe('#Requests', function() {
     });
 
     it('Edit command', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').put('/my/commands/command', {
+        nock('https://api.example.com/api/bot/v1').put('/my/commands/command', {
             description: 'Desc',
             name: 'name'
         }).reply(200, {});
@@ -321,7 +286,7 @@ describe('#Requests', function() {
     });
 
     it('Delete command', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').delete('/my/commands/command').reply(200, {});
+        nock('https://api.example.com/api/bot/v1').delete('/my/commands/command').reply(200, {});
 
         retailcrm.deleteCommand('command').then(function (value) {
             chai.expect(value).to.be.empty;
@@ -333,13 +298,13 @@ describe('#Requests', function() {
     });
 
     it('Update bot info', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').patch('/my/info', {
-            avatar_url: 'http://test.ru/avatar.png',
+        nock('https://api.example.com/api/bot/v1').patch('/my/info', {
+            avatar_url: 'http://tests.ru/avatar.png',
             name: 'Bot'
         }).reply(200, {});
 
         retailcrm.info({
-            avatar_url: 'http://test.ru/avatar.png',
+            avatar_url: 'http://tests.ru/avatar.png',
             name: 'Bot'
         }).then(function (value) {
             chai.expect(value).to.be.empty;
@@ -351,7 +316,7 @@ describe('#Requests', function() {
     });
 
     it('Get users', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/users').reply(200, [{
+        nock('https://api.example.com/api/bot/v1').get('/users').reply(200, [{
             id: 1,
             name: 'Username'
         }]);
@@ -363,7 +328,7 @@ describe('#Requests', function() {
     });
 
     it('Get empty users', function () {
-        nock('https://test.retailcrm.ru/api/bot/v1').get('/users').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/users').reply(200, []);
 
         retailcrm.getUsers().then(function (value) {
             chai.expect(value).to.be.an('array');
@@ -373,7 +338,7 @@ describe('#Requests', function() {
 
     it('Get websocket url', function () {
         var url = retailcrm.getWebsocketUrl(['message_new', 'message_updated']);
-        var expected = 'wss://test.retailcrm.ru/api/bot/v1/ws?events=message_new,message_updated';
+        var expected = 'wss://api.example.com/api/bot/v1/ws?events=message_new,message_updated';
 
         chai.assert.equal(url, expected);
     });

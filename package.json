@@ -4,7 +4,7 @@
   "tags": ["API", "retailCRM", "Bot", "Chat"],
   "version": "1.0.0",
   "scripts": {
-    "test": " ./node_modules/.bin/_mocha test.js"
+    "test": "./node_modules/.bin/_mocha ./tests/."
   },
   "author": "retailCRM",
   "license": "MIT",
