@@ -1,6 +1,6 @@
 [![Build Status](https://img.shields.io/travis/retailcrm/mg-bot-api-client-js/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/retailcrm/mg-bot-api-client-js)
 [![GitHub release](https://img.shields.io/github/release/retailcrm/mg-bot-api-client-js.svg?style=flat-square)](https://github.com/retailcrm/mg-bot-api-client-js/releases)
-[![Node version](https://img.shields.io/node/v/mg-bot-api-client-js.svg?style=flat-square)](https://www.npmjs.com/package/mg-api-client)
+[![Node version](https://img.shields.io/node/v/mg-api-client.svg?style=flat-square)](https://www.npmjs.com/package/mg-api-client)
 
 
 # retailCRM Message Gateway Bot API JS client
@@ -9,11 +9,11 @@ This is js retailCRM bot API client.
 
 # Installation
 ```
-npm install --save mg-bot-api-client-js
+npm install --save mg-api-client
 ```
 In your file
 ```
-var RetailcrmBotApiClient = require('mg-bot-api-client-js');
+var RetailcrmBotApiClient = require('mg-api-client');
 ```
 # Usage
 #### Get users
