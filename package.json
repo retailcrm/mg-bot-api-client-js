@@ -1,0 +1,26 @@
+{
+  "name": "mg-bot-api-client-js",
+  "description": "JS client for retailCRM Bot API",
+  "tags": ["API", "retailCRM", "Bot", "Chat"],
+  "version": "1.0.0",
+  "scripts": {
+    "test": "./node_modules/.bin/_mocha ./tests/."
+  },
+  "author": "retailCRM",
+  "license": "MIT",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/retailcrm/mg-bot-api-client-js/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.6"
+  },
+  "homepage": "https://github.com/retailcrm/mg-bot-api-client-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:retailcrm/mg-bot-api-client-js.git"
+  }
+}
