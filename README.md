@@ -1,6 +1,6 @@
 # retailCRM Message Gateway Bot API JS client
 
-This is js retailCRM bot API client. [API documentation](https://139810.selcdn.ru/download/doc/mg-bot-api/bot.v1.html)
+This is js retailCRM bot API client.
 
 # Installation
 ```
