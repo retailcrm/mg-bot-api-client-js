@@ -1,16 +1,16 @@
-var nock = require('nock');
-var chai = require('chai');
-var RetailcrmBotApiClient = require('../index');
+import nock from 'nock'
+import chai from 'chai'
+import RetailcrmBotApiClient from '../index'
 
 describe('#API client v1', function() {
     beforeEach(function() {
         nock.cleanAll();
     });
 
-    var retailcrm = new RetailcrmBotApiClient({
+    const retailcrm = new RetailcrmBotApiClient({
         host: 'https://api.example.com',
         token: 'test_token'
-    }).getClient();
+    }).client;
 
     it('Get bots list', function() {
         nock('https://api.example.com/api/bot/v1').get('/bots').reply(200, [{
@@ -153,7 +153,7 @@ describe('#API client v1', function() {
     });
 
     it('Assign dialog incorrect', function () {
-        chai.expect(retailcrm.assignDialog.bind(retailcrm)).to.throw('Body is not be empty');
+        chai.expect(retailcrm.assignDialog.bind(retailcrm)).to.throw('Parameter `dialog_id` is required');
     });
 
     it('Close dialog', function () {
@@ -165,7 +165,7 @@ describe('#API client v1', function() {
     });
 
     it('Close dialog incorrect', function () {
-        chai.expect(retailcrm.closeDialog.bind(retailcrm)).to.throw('dialog_id is required');
+        chai.expect(retailcrm.closeDialog.bind(retailcrm)).to.throw('Parameter `dialog_id` is required');
     });
 
     it('Send message', function () {
@@ -226,7 +226,7 @@ describe('#API client v1', function() {
     });
 
     it('Delete message incorrect', function () {
-        chai.expect(retailcrm.deleteMessage.bind(retailcrm)).to.throw('message_id is required');
+        chai.expect(retailcrm.deleteMessage.bind(retailcrm)).to.throw('Parameter `message_id` is required');
     });
 
     it('Edit message', function () {
@@ -242,7 +242,7 @@ describe('#API client v1', function() {
     });
 
     it('Edit message incorrect', function () {
-        chai.expect(retailcrm.editMessage.bind(retailcrm)).to.throw('Body is not be empty');
+        chai.expect(retailcrm.editMessage.bind(retailcrm)).to.throw('Parameter `message_id` is required');
     });
 
     it('Get commands', function () {
@@ -282,7 +282,7 @@ describe('#API client v1', function() {
 
     it('Edit command incorrect', function () {
         chai.expect(retailcrm.editCommand.bind(retailcrm, 'command')).to.throw('Body is not be empty');
-        chai.expect(retailcrm.editCommand.bind(retailcrm)).to.throw('Parameter command name is required');
+        chai.expect(retailcrm.editCommand.bind(retailcrm)).to.throw('Parameter `command_name` is required');
     });
 
     it('Delete command', function () {
@@ -294,7 +294,7 @@ describe('#API client v1', function() {
     });
 
     it('Delete command incorrect', function () {
-        chai.expect(retailcrm.deleteCommand.bind(retailcrm)).to.throw('command_name is required');
+        chai.expect(retailcrm.deleteCommand.bind(retailcrm)).to.throw('Parameter `command_name` is required');
     });
 
     it('Update bot info', function () {
@@ -336,14 +336,16 @@ describe('#API client v1', function() {
         });
     });
 
-    it('Get websocket url', function () {
-        var url = retailcrm.getWebsocketUrl(['message_new', 'message_updated']);
-        var expected = 'wss://api.example.com/api/bot/v1/ws?events=message_new,message_updated';
+    it('Get websocket data', function () {
+        const wsData = retailcrm.getWebsocketData(['message_new', 'message_updated']);
+        const expectedUrl = 'wss://api.example.com/api/bot/v1/ws?events=message_new,message_updated';
+        const expectedHeaders = {'X-Bot-Token': 'test_token'};
 
-        chai.assert.equal(url, expected);
+        chai.assert.equal(wsData.get('url'), expectedUrl);
+        chai.assert.equal(wsData.get('headers')["X-Bot-Token"], expectedHeaders["X-Bot-Token"]);
     });
 
     it('Get websocket url incorrect', function () {
-        chai.expect(retailcrm.getWebsocketUrl.bind(retailcrm)).to.throw('Events is required');
+        chai.expect(retailcrm.getWebsocketData.bind(retailcrm)).to.throw('Events is required');
     });
 });

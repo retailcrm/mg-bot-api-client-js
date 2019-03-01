@@ -1,6 +1,5 @@
-var nock = require('nock');
-var chai = require('chai');
-var RetailcrmBotApiClient = require('../index');
+import chai from 'chai'
+import RetailcrmBotApiClient from '../dist/index'
 
 describe('#Constructor', function () {
     it('Empty url', function () {

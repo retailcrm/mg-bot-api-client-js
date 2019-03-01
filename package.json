@@ -1,22 +1,37 @@
 {
   "name": "mg-api-client",
   "description": "JS client for retailCRM Bot API",
-  "tags": ["API", "retailCRM", "Bot", "Chat"],
+  "tags": [
+    "API",
+    "retailCRM",
+    "Bot",
+    "Chat"
+  ],
   "version": "1.0.1",
   "scripts": {
-    "test": "./node_modules/.bin/_mocha ./tests/."
+    "build": "./node_modules/.bin/rollup -c",
+    "test": "./node_modules/.bin/_mocha --compilers js:@babel/register ./tests/."
   },
   "author": "retailCRM",
   "license": "MIT",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "bugs": {
     "url": "https://github.com/retailcrm/mg-bot-api-client-js/issues"
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "babelrc-rollup": "^3.0.0",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nock": "^10.0.6"
+    "nock": "^10.0.6",
+    "rollup": "^1.2.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0"
   },
   "engines": {
     "node": ">= 4.0.0"
