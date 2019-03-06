@@ -15,17 +15,17 @@ In your file
 
 ###### CommonJS
 ```
-var RetailcrmBotApiClient = require('mg-api-client');
+var MgBotApiClient = require('mg-api-client');
 ```
 ###### es6
 ```
-import RetailcrmBotApiClient from 'mg-api-client';
+import MgBotApiClient from 'mg-api-client';
 ```
 
 # Usage
 #### Get users
 ```javascript
-const api = new RetailcrmBotApiClient({
+const api = new MgBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
@@ -42,7 +42,7 @@ api.getUsers()
 
 #### Send message
 ```javascript
-const api = new RetailcrmBotApiClient({
+const api = new MgBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
@@ -67,13 +67,13 @@ api.sendMessage(message)
 ```javascript
 const WebSocket = require('ws');
 
-const api = new RetailcrmBotApiClient({
+const api = new MgBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
 }).client;
 
-const wsData = api.getWebsocketData([RetailcrmBotApiClient.types().wsMessageNew]);
+const wsData = api.getWebsocketData([MgBotApiClient.types().wsMessageNew]);
 const ws = new WebSocket(wsData.get('url'), {
     headers: wsData.get('headers')
 });
