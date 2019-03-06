@@ -2,11 +2,11 @@
 
 import v1 from './lib/v1/client'
 import Request from './lib/request'
+import * as consts from './lib/consts'
 
 const lastApiVersion = 'v1';
 
-/** Class init bot api client */
-export default class RetailcrmBotApiClient {
+export default class MgBotApiClient {
     /**
      * @param {Object} options
      * @throws {Error}
@@ -46,4 +46,12 @@ export default class RetailcrmBotApiClient {
     get client() {
         return this._client;
     };
+
+    /**
+     * Get types
+     * @returns {{msgTypeOrder?: string, wsUserJoinedChat?: string, msgTypeImage?: string, wsDialogAssign?: string, msgTypeText?: string, messageScopePublic?: string, wsMessageDeleted?: string, msgTypeCommand?: string, msgTypeFile?: string, msgTypeSystem?: string, wsBotUpdated?: string, msgTypeProduct?: string, wsDialogClosed?: string, wsMessageNew?: string, wsMessageUpdated?: string, wsSettingsUpdated?: string, wsUserUpdated?: string, wsCustomerUpdated?: string, wsChatCreated?: string, wsUserLeftChat?: string, wsChannelUpdated?: string, wsDialogOpened?: string, messageScopePrivate?: string, wsUserOnlineUpdated?: string, wsChatUnreadUpdated?: string, wsChatUpdated?: string}}
+     */
+    static types() {
+        return consts;
+    }
 }

@@ -1,16 +1,16 @@
 import chai from 'chai'
-import RetailcrmBotApiClient from '../dist/index'
+import MgBotApiClient from '../index'
 
 describe('#Constructor', function () {
     it('Empty url', function () {
         chai.expect(function() {
-            new RetailcrmBotApiClient({token: 'test_token'});
+            new MgBotApiClient({token: 'test_token'});
         }).to.throw('Url is required');
     });
 
     it('Incorrect url', function () {
         chai.expect(function() {
-            new RetailcrmBotApiClient({
+            new MgBotApiClient({
                 host: 'http://api.example.com',
                 token: 'test_token'
             });
@@ -19,7 +19,7 @@ describe('#Constructor', function () {
 
     it('Empty token', function () {
         chai.expect(function() {
-            new RetailcrmBotApiClient({host: 'https://api.example.com'});
+            new MgBotApiClient({host: 'https://api.example.com'});
         }).to.throw('Token is required');
     });
 });

@@ -12,9 +12,16 @@ This is js retailCRM bot API client.
 npm install --save mg-api-client
 ```
 In your file
+
+###### CommonJS
 ```
 var RetailcrmBotApiClient = require('mg-api-client');
 ```
+###### es6
+```
+import RetailcrmBotApiClient from 'mg-api-client';
+```
+
 # Usage
 #### Get users
 ```javascript
@@ -66,7 +73,7 @@ const api = new RetailcrmBotApiClient({
     apiVersion: 'v1' // optional
 }).client;
 
-const wsData = api.getWebsocketData(['message_new']);
+const wsData = api.getWebsocketData([RetailcrmBotApiClient.types().wsMessageNew]);
 const ws = new WebSocket(wsData.get('url'), {
     headers: wsData.get('headers')
 });

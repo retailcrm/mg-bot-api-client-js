@@ -9,8 +9,9 @@
   ],
   "version": "1.0.1",
   "scripts": {
+    "doc": "jsdoc lib/v1/client.js lib/types.js -R README.md",
     "build": "./node_modules/.bin/rollup -c",
-    "test": "./node_modules/.bin/_mocha --compilers js:@babel/register ./tests/."
+    "test": "./node_modules/.bin/_mocha --require @babel/register ./tests/."
   },
   "author": "retailCRM",
   "license": "MIT",
