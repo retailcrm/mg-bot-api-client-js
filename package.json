@@ -9,7 +9,7 @@
   ],
   "version": "1.0.1",
   "scripts": {
-    "doc": "jsdoc lib/v1/client.js lib/types.js -R README.md",
+    "doc": "./node_modules/.bin/jsdoc lib/v1/client.js lib/consts.js -R README.md",
     "build": "./node_modules/.bin/rollup -c",
     "test": "./node_modules/.bin/_mocha --require @babel/register ./tests/."
   },
@@ -27,6 +27,7 @@
     "@babel/register": "^7.0.0",
     "babelrc-rollup": "^3.0.0",
     "chai": "^4.2.0",
+    "jsdoc": "^3.5.5",
     "mocha": "^5.2.0",
     "nock": "^10.0.6",
     "rollup": "^1.2.2",
