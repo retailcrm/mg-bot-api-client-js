@@ -1,6 +1,19 @@
 language: node_js
+
 node_js:
   - "11"
   - "10"
   - "8"
+
 script: npm run test
+
+after_success: npm run doc
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: out
+  on:
+    branch: master

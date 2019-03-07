@@ -1,8 +1,8 @@
-var chai = require('chai');
-var request = require('../lib/request');
+import chai from 'chai'
+import Request from '../lib/request'
 
 describe('#Request', function () {
-    var req = new request.Request({
+    let req = new Request({
         host: 'http://api.example.com',
         token: 'test_token'
     });

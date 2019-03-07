@@ -12,17 +12,24 @@ This is js retailCRM bot API client.
 npm install --save mg-api-client
 ```
 In your file
+
+###### CommonJS
 ```
-var RetailcrmBotApiClient = require('mg-api-client');
+var MgBotApiClient = require('mg-api-client');
 ```
+###### es6
+```
+import MgBotApiClient from 'mg-api-client';
+```
+
 # Usage
 #### Get users
 ```javascript
-var api = new RetailcrmBotApiClient({
+const api = new MgBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
-}).getClient();
+}).client;
 
 api.getUsers()
     .then(function (users) {
@@ -35,13 +42,13 @@ api.getUsers()
 
 #### Send message
 ```javascript
-var api = new RetailcrmBotApiClient({
+const api = new MgBotApiClient({
     host: 'https://api.example.com',
     token: 'your bot token',
     apiVersion: 'v1' // optional
-}).getClient();
+}).client;
 
-var message = {
+let message = {
     chat_id: 1,
     content: 'Text message',
     scope: 'public',
@@ -55,4 +62,39 @@ api.sendMessage(message)
     .catch(function (e) {
         console.log(e);
     });
+```
+#### Websocket Example
+```javascript
+const WebSocket = require('ws');
+
+const api = new MgBotApiClient({
+    host: 'https://api.example.com',
+    token: 'your bot token',
+    apiVersion: 'v1' // optional
+}).client;
+
+const wsData = api.getWebsocketData([MgBotApiClient.types().wsMessageNew]);
+const ws = new WebSocket(wsData.get('url'), {
+    headers: wsData.get('headers')
+});
+
+ws.on('message', function (content) {
+    let event = JSON.parse(content);
+    let data = event.data;
+
+    if (event.type === 'message_new' && data.message.from.type !== 'bot') {
+        let message = {
+            chat_id: data.message.chat_id,
+            content: 'Bonjour!',
+            scope: 'public',
+            type: 'text'
+        };
+
+        api.sendMessage(message).then(function (res) {
+            console.log(res);
+        }).catch(function (e) {
+            console.log(e);
+        })
+    }
+});
 ```
