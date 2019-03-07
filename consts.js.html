@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: consts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: consts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * New message websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsMessageNew
+ */
+export const wsMessageNew = 'message_new';
+
+/**
+ * Updating message websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsMessageUpdated
+ */
+export const wsMessageUpdated = 'message_updated';
+
+/**
+ * Websocket event delete message
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsMessageDeleted
+ */
+export const wsMessageDeleted = 'message_deleted';
+
+/**
+ * Dialogue opening websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsDialogOpened
+ *
+ */
+export const wsDialogOpened = 'dialog_opened';
+
+/**
+ * Dialogue closing websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsDialogClosed
+ */
+export const wsDialogClosed = 'dialog_closed';
+
+/**
+ * Dialogue appointment websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsDialogAssign
+ */
+export const wsDialogAssign = 'dialog_assign';
+
+/**
+ * Chat creating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsChatCreated
+ */
+export const wsChatCreated = 'chat_created';
+
+/**
+ * Chat updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsChatUpdated
+ */
+export const wsChatUpdated = 'chat_updated';
+
+/**
+ * Unread chat updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsChatUnreadUpdated
+ */
+export const wsChatUnreadUpdated = 'chat_unread_updated';
+
+/**
+ * User online status updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsUserOnlineUpdated
+ */
+export const wsUserOnlineUpdated = 'user_online_updated';
+
+/**
+ * User joined chat websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsUserJoinedChat
+ */
+export const wsUserJoinedChat = 'user_joined_chat';
+
+/**
+ * User left chat websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsUserLeftChat
+ *
+ */
+export const wsUserLeftChat = 'user_left_chat';
+
+/**
+ * User updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsUserUpdated
+ */
+export const wsUserUpdated = 'user_updated';
+
+/**
+ * Customer updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsCustomerUpdated
+ */
+export const wsCustomerUpdated = 'customer_updated';
+
+/**
+ * Bot updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsBotUpdated
+ *
+ */
+export const wsBotUpdated = 'bot_updated';
+
+/**
+ * Channel updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsChannelUpdated
+ */
+export const wsChannelUpdated = 'channel_updated';
+
+/**
+ * Settings updating websocket event
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().wsSettingsUpdated
+ */
+export const wsSettingsUpdated = 'settings_updated';
+
+
+/**
+ * Public message scope
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().messageScopePublic
+ */
+export const messageScopePublic = 'public';
+
+/**
+ * Public message scope
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().messageScopePrivate
+ */
+export const messageScopePrivate = 'private';
+
+
+/**
+ * Text message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeText
+ */
+export const msgTypeText = 'text';
+
+/**
+ * System message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeSystem
+ */
+export const msgTypeSystem = 'system';
+
+/**
+ * Command message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeCommand
+ */
+export const msgTypeCommand = 'command';
+
+/**
+ * Order message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeOrder
+ */
+export const msgTypeOrder = 'order';
+
+/**
+ * Product message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeProduct
+ */
+export const msgTypeProduct = 'product';
+
+/**
+ * File message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeFile
+ */
+export const msgTypeFile = 'file';
+
+/**
+ * Image message type
+ * @constant
+ * @type {string}
+ * @example MgBotApiClient.types().msgTypeImage
+ */
+export const msgTypeImage = 'image';
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#messageScopePrivate">messageScopePrivate</a></li><li><a href="global.html#messageScopePublic">messageScopePublic</a></li><li><a href="global.html#msgTypeCommand">msgTypeCommand</a></li><li><a href="global.html#msgTypeFile">msgTypeFile</a></li><li><a href="global.html#msgTypeImage">msgTypeImage</a></li><li><a href="global.html#msgTypeOrder">msgTypeOrder</a></li><li><a href="global.html#msgTypeProduct">msgTypeProduct</a></li><li><a href="global.html#msgTypeSystem">msgTypeSystem</a></li><li><a href="global.html#msgTypeText">msgTypeText</a></li><li><a href="global.html#wsBotUpdated">wsBotUpdated</a></li><li><a href="global.html#wsChannelUpdated">wsChannelUpdated</a></li><li><a href="global.html#wsChatCreated">wsChatCreated</a></li><li><a href="global.html#wsChatUnreadUpdated">wsChatUnreadUpdated</a></li><li><a href="global.html#wsChatUpdated">wsChatUpdated</a></li><li><a href="global.html#wsCustomerUpdated">wsCustomerUpdated</a></li><li><a href="global.html#wsDialogAssign">wsDialogAssign</a></li><li><a href="global.html#wsDialogClosed">wsDialogClosed</a></li><li><a href="global.html#wsDialogOpened">wsDialogOpened</a></li><li><a href="global.html#wsMessageDeleted">wsMessageDeleted</a></li><li><a href="global.html#wsMessageNew">wsMessageNew</a></li><li><a href="global.html#wsMessageUpdated">wsMessageUpdated</a></li><li><a href="global.html#wsSettingsUpdated">wsSettingsUpdated</a></li><li><a href="global.html#wsUserJoinedChat">wsUserJoinedChat</a></li><li><a href="global.html#wsUserLeftChat">wsUserLeftChat</a></li><li><a href="global.html#wsUserOnlineUpdated">wsUserOnlineUpdated</a></li><li><a href="global.html#wsUserUpdated">wsUserUpdated</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 07 2019 08:08:57 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

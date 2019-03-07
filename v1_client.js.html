@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: v1/client.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: v1/client.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/** @class Client */
+export default class Client {
+    constructor(request) {
+        this._version = 'v1';
+        this._request = request;
+    }
+
+    /**
+     * Get bots
+     * @param {Object} params - Filter's object for bots
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getBots(params = {}) {
+        return this._request.get(this._version + '/bots', params);
+    };
+
+    /**
+     * Get channels
+     * @param {Object} params - Filter's object for channels
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getChannels(params = {}) {
+        return this._request.get(this._version + '/channels', params);
+    };
+
+    /**
+     * Get chats
+     * @param {Object} params - Filter's object for chats
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getChats(params = {}) {
+        return this._request.get(this._version + '/chats', params);
+    };
+
+    /**
+     * Get customers
+     * @param {Object} params - Filter's object for customers
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getCustomers(params = {}) {
+        return this._request.get(this._version + '/customers', params);
+    };
+
+    /**
+     * Get dialogs
+     * @param {Object} params - Filter's object for dialogs
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getDialogs(params = {}) {
+        return this._request.get(this._version + '/dialogs', params);
+    };
+
+    /**
+     * Get members
+     * @param {Object} params - Filter's object for members
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getMembers(params = {}) {
+        return this._request.get(this._version + '/members', params);
+    };
+
+    /**
+     * Assign dialog
+     * @param {Number} dialog_id - Dialog id
+     * @param {Object} dialog - Dialog object
+     * @returns {Promise}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    assignDialog(dialog_id, dialog) {
+        if (!dialog_id) {
+            throw new Error('Parameter `dialog_id` is required');
+        }
+
+        return this._request.patch(this._version + '/dialogs/'+ dialog_id + '/assign', dialog);
+    };
+
+    /**
+     * Close dialog
+     * @param {Number} dialog_id - Dialog id
+     * @returns {Promise}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    closeDialog(dialog_id) {
+        if (!dialog_id) {
+            throw new Error('Parameter `dialog_id` is required');
+        }
+
+        return this._request.delete(this._version + '/dialogs/'+ dialog_id + '/close');
+    };
+
+    /**
+     * Send message
+     * @param {Object} message - Message object
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    sendMessage(message) {
+        return this._request.post(this._version + '/messages', message);
+    };
+
+    /**
+     * Get messages
+     * @param {Object} params - Filter's object for messages
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getMessages(params = {}) {
+        return this._request.get(this._version + '/messages', params);
+    };
+
+    /**
+     * Delete message
+     * @param {Number} message_id - Message id
+     * @returns {Promise}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    deleteMessage(message_id) {
+        if (!message_id) {
+            throw new Error('Parameter `message_id` is required');
+        }
+
+        return this._request.delete(this._version + '/messages/' + message_id);
+    };
+
+    /**
+     * Edit message
+     * @param {Number} message_id - Message id
+     * @param {Object} message - Message object
+     * @returns {Promise}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    editMessage(message_id, message) {
+        if (!message_id) {
+            throw new Error('Parameter `message_id` is required');
+        }
+
+        return this._request.patch(this._version + '/messages/' + message_id, message);
+    };
+
+    /**
+     * Get bot commands
+     * @param {Object} params - Filter's object for commands
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getCommands(params = {}) {
+        return this._request.get(this._version + '/my/commands', params);
+    };
+
+    /**
+     * Edit bot command
+     * @param {string} command_name - Command name
+     * @param {Object} command - Command object
+     * @returns {Promise}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    editCommand(command_name, command) {
+        if (!command_name) {
+            throw new Error('Parameter `command_name` is required');
+        }
+
+        return this._request.put(this._version + '/my/commands/' + command_name, command);
+    };
+
+    /**
+     * Delete bot command
+     * @param {string} command_name - Command name
+     * @returns {Promise}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    deleteCommand(command_name) {
+        if (!command_name) {
+            throw new Error('Parameter `command_name` is required');
+        }
+
+        return this._request.delete(this._version + '/my/commands/' + command_name);
+    };
+
+    /**
+     * Bot information update
+     * @param {Object} data - Bot data
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    info(data) {
+        return this._request.patch(this._version + '/my/info', data);
+    };
+
+    /**
+     * Get users
+     * @param {Object} params - Filter's object for users
+     * @returns {Promise}
+     * @memberOf Client
+     */
+    getUsers(params = {}) {
+        return this._request.get(this._version + '/users', params);
+    };
+
+    /**
+     * Get websocket url
+     * @param {array&lt;string>} events - Array of strings with websocket events
+     * @returns {Map}
+     * @throws {Error}
+     * @memberOf Client
+     */
+    getWebsocketData(events) {
+        if (!events) {
+            throw new Error('Events is required');
+        }
+
+        let map = new Map();
+        let url = 'wss://' + this._request.host + '/api/bot/' + this._version + '/ws?events=';
+
+        events.forEach(function (event) {
+            url += event + ',';
+        });
+
+        url = url.slice(0, -1);
+
+        map.set('url', url);
+        map.set('headers', {
+            'X-Bot-Token': this._request.token
+        });
+
+        return map;
+    };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#messageScopePrivate">messageScopePrivate</a></li><li><a href="global.html#messageScopePublic">messageScopePublic</a></li><li><a href="global.html#msgTypeCommand">msgTypeCommand</a></li><li><a href="global.html#msgTypeFile">msgTypeFile</a></li><li><a href="global.html#msgTypeImage">msgTypeImage</a></li><li><a href="global.html#msgTypeOrder">msgTypeOrder</a></li><li><a href="global.html#msgTypeProduct">msgTypeProduct</a></li><li><a href="global.html#msgTypeSystem">msgTypeSystem</a></li><li><a href="global.html#msgTypeText">msgTypeText</a></li><li><a href="global.html#wsBotUpdated">wsBotUpdated</a></li><li><a href="global.html#wsChannelUpdated">wsChannelUpdated</a></li><li><a href="global.html#wsChatCreated">wsChatCreated</a></li><li><a href="global.html#wsChatUnreadUpdated">wsChatUnreadUpdated</a></li><li><a href="global.html#wsChatUpdated">wsChatUpdated</a></li><li><a href="global.html#wsCustomerUpdated">wsCustomerUpdated</a></li><li><a href="global.html#wsDialogAssign">wsDialogAssign</a></li><li><a href="global.html#wsDialogClosed">wsDialogClosed</a></li><li><a href="global.html#wsDialogOpened">wsDialogOpened</a></li><li><a href="global.html#wsMessageDeleted">wsMessageDeleted</a></li><li><a href="global.html#wsMessageNew">wsMessageNew</a></li><li><a href="global.html#wsMessageUpdated">wsMessageUpdated</a></li><li><a href="global.html#wsSettingsUpdated">wsSettingsUpdated</a></li><li><a href="global.html#wsUserJoinedChat">wsUserJoinedChat</a></li><li><a href="global.html#wsUserLeftChat">wsUserLeftChat</a></li><li><a href="global.html#wsUserOnlineUpdated">wsUserOnlineUpdated</a></li><li><a href="global.html#wsUserUpdated">wsUserUpdated</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 07 2019 08:08:57 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
