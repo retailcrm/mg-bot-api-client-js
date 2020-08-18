@@ -22,23 +22,21 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/register": "^7.0.0",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "@rollup/plugin-babel": "^5.2.0",
     "babelrc-rollup": "^3.0.0",
     "chai": "^4.2.0",
     "jsdoc": "^3.5.5",
-    "mocha": "^5.2.0",
+    "mocha": "^8.1.1",
     "nock": "^10.0.6",
     "nyc": "^15.1.0",
-    "rollup": "^1.2.2",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0"
+    "rollup": "^2.26.3"
   },
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 8.0.0"
   },
   "homepage": "https://github.com/retailcrm/mg-bot-api-client-js#readme",
   "repository": {

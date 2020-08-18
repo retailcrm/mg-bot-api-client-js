@@ -33,6 +33,7 @@ jobs:
           branch: master
       if: branch = master AND type = push AND fork = false
     - stage: npm deploy
+      node_js: 13
       script: skip
       before_deploy: npm run build
       deploy:
