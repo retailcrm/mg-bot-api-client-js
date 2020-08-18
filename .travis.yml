@@ -34,6 +34,7 @@ jobs:
       if: branch = master AND type = push AND fork = false
     - stage: npm deploy
       script: skip
+      before_deploy: npm run build
       deploy:
         provider: npm
         email: $NPM_EMAIL
