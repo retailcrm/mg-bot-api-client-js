@@ -7,11 +7,12 @@
     "Bot",
     "Chat"
   ],
-  "version": "1.0.1",
+  "version": "1.0.3",
   "scripts": {
     "doc": "./node_modules/.bin/jsdoc lib/v1/client.js lib/consts.js -R README.md",
     "build": "./node_modules/.bin/rollup -c",
-    "test": "./node_modules/.bin/_mocha --require @babel/register ./tests/."
+    "test": "./node_modules/.bin/nyc ./node_modules/.bin/_mocha --require @babel/register ./tests/.",
+    "report-coverage": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "author": "retailCRM",
   "license": "MIT",
@@ -30,6 +31,7 @@
     "jsdoc": "^3.5.5",
     "mocha": "^5.2.0",
     "nock": "^10.0.6",
+    "nyc": "^15.1.0",
     "rollup": "^1.2.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-builtins": "^2.1.2",
