@@ -20,6 +20,7 @@ jobs:
         - npm install -g codecov
         - npm run report-coverage
     - stage: gh pages
+      node_js: 13
       script: skip
       before_deploy: npm run doc
       deploy:
