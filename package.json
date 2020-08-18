@@ -7,7 +7,7 @@
     "Bot",
     "Chat"
   ],
-  "version": "1.0.1",
+  "version": "1.0.3",
   "scripts": {
     "doc": "./node_modules/.bin/jsdoc lib/v1/client.js lib/consts.js -R README.md",
     "build": "./node_modules/.bin/rollup -c",

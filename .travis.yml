@@ -1,19 +1,39 @@
+os: linux
 language: node_js
 
-node_js:
-  - "11"
-  - "10"
-  - "8"
+if: tag IS blank
+
+stages:
+  - test
+  - gh pages
+  - npm deploy
 
 script: npm run test
 
-after_success: npm run doc
-
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  keep-history: true
-  local-dir: out
-  on:
-    branch: master
+jobs:
+  include:
+    - node_js: 8
+    - node_js: 10
+    - node_js: 12
+    - node_js: 13
+    - stage: gh pages
+      script: skip
+      before_deploy: npm run doc
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        local-dir: out
+        on:
+          branch: master
+      if: branch = master AND type = push AND fork = false
+    - stage: npm deploy
+      deploy:
+        provider: npm
+        email: $NPM_EMAIL
+        api_key: $NPM_API_KEY
+        skip-cleanup: true
+        on:
+          branch: master
+      if: branch = master AND type = push AND fork = false
