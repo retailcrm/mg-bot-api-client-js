@@ -1,5 +1,6 @@
 import nock from 'nock'
 import chai from 'chai'
+import https from 'https'
 import MgBotApiClient from '../index'
 
 describe('#API client v1', function() {
@@ -25,9 +26,9 @@ describe('#API client v1', function() {
     });
 
     it('Get empty bots list', function () {
-        nock('https://api.example.com/api/bot/v1').get('/bots').reply(200, []);
+        nock('https://api.example.com/api/bot/v1').get('/bots?id=1').reply(200, []);
 
-        api.getBots().then(function (value) {
+        api.getBots({id: 1}).then(function (value) {
             chai.expect(value).to.be.an('array');
             chai.expect(value).to.be.empty;
         });
@@ -154,6 +155,20 @@ describe('#API client v1', function() {
 
     it('Assign dialog incorrect', function () {
         chai.expect(api.assignDialog.bind(api)).to.throw('Parameter `dialog_id` is required');
+    });
+
+    it('Unassign dialog', function () {
+        nock('https://api.example.com/api/bot/v1').patch('/dialogs/1/unassign').reply(200, {
+            previous_responsible: {type: 'user', id: 1, assigned_at: '2019-01-22T11:50:13Z'}
+        });
+
+        api.unassignDialog(1).then(function (value) {
+            chai.expect(value).to.be.an('object');
+        });
+    });
+
+    it('Unassign dialog incorrect', function () {
+        chai.expect(api.unassignDialog.bind(api)).to.throw('Parameter `dialog_id` is required');
     });
 
     it('Close dialog', function () {
@@ -334,6 +349,83 @@ describe('#API client v1', function() {
             chai.expect(value).to.be.an('array');
             chai.expect(value).to.be.empty;
         });
+    });
+
+    it('Get file', function () {
+        nock('https://api.example.com/api/bot/v1').get('/files/1').reply(200, {
+            id: '1',
+            size: 100,
+            type: 'image',
+            url: 'https://file.url'
+        });
+
+        api.getFile('1').then(function (value) {
+            chai.expect(value).to.be.an('object');
+            chai.expect(value.id).to.be.equal('1');
+            chai.expect(value.size).to.be.equal(100);
+            chai.expect(value.type).to.be.equal('image');
+            chai.expect(value.url).to.be.equal('https://file.url');
+        });
+    });
+
+    it('Get file incorrect', function () {
+        chai.expect(api.getFile.bind(api)).to.throw('Parameter `file_id` is required');
+    });
+
+    it('File upload', function () {
+        const options = {
+            host: 'via.placeholder.com',
+            path: '/300'
+        };
+
+        const req = https.get(options, function (res) {
+            let data = Buffer.from('', 'binary');
+            res.on('data', function (chunk) {
+                data = Buffer.concat([data, Buffer.from(chunk, 'binary')])
+            });
+
+            res.on('end', function () {
+                nock('https://api.example.com/api/bot/v1').post('/files/upload', data).reply(200, {
+                    id: '1',
+                    size: 1132,
+                    type: 'image'
+                });
+
+                api.filesUpload(data).then(function (value) {
+                    chai.expect(value).to.be.an('object');
+                    chai.expect(value.id).to.be.equal('1');
+                    chai.expect(value.size).to.be.equal(1132);
+                    chai.expect(value.type).to.be.equal('image');
+                });
+            });
+        });
+
+        req.end();
+    });
+
+    it('File upload incorrect', function () {
+        chai.expect(api.filesUpload.bind(api)).to.throw('Body is not be empty');
+    });
+
+    it('File upload by url', function () {
+        nock('https://api.example.com/api/bot/v1').post('/files/upload_by_url', {url: 'https://fileurl.com'}).reply(200, {
+            id: '123',
+            size: 1132,
+            type: 'image',
+            url: 'https://file.url'
+        });
+
+        api.filesUploadByUrl('https://fileurl.com').then(function (value) {
+            chai.expect(value).to.be.an('object');
+            chai.expect(value.id).to.be.equal('123');
+            chai.expect(value.size).to.be.equal(1132);
+            chai.expect(value.type).to.be.equal('image');
+            chai.expect(value.url).to.be.equal('https://file.url');
+        });
+    });
+
+    it('File upload by url incorrect', function () {
+        chai.expect(api.filesUploadByUrl.bind(api)).to.throw('Parameter `url` is required');
     });
 
     it('Get websocket data', function () {
