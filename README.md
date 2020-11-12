@@ -3,7 +3,7 @@
 [![Node version](https://img.shields.io/node/v/mg-api-client.svg?style=flat-square)](https://www.npmjs.com/package/mg-api-client)
 
 
-# retailCRM Message Gateway Bot API JS client
+# Message Gateway Bot API JS client
 
 This is js retailCRM bot API client.
 
