@@ -1,7 +1,8 @@
-[![Build Status](https://img.shields.io/travis/retailcrm/mg-bot-api-client-js/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/retailcrm/mg-bot-api-client-js)
-[![GitHub release](https://img.shields.io/github/release/retailcrm/mg-bot-api-client-js.svg?style=flat-square)](https://github.com/retailcrm/mg-bot-api-client-js/releases)
-[![Node version](https://img.shields.io/node/v/mg-api-client.svg?style=flat-square)](https://www.npmjs.com/package/mg-api-client)
-
+[![Build Status](https://github.com/retailcrm/mg-bot-api-client-js/workflows/ci/badge.svg)](https://github.com/retailcrm/mg-bot-api-client-js/actions)
+[![Coverage](https://img.shields.io/codecov/c/gh/retailcrm/mg-bot-api-client-js/master.svg?logo=codecov)](https://codecov.io/gh/retailcrm/mg-bot-api-client-js)
+[![Latest stable](https://img.shields.io/npm/v/mg-api-client.svg)](https://npmjs.com/package/mg-api-client)
+[![Node version](https://img.shields.io/node/v/mg-api-client.svg)](https://www.npmjs.com/package/mg-api-client)
+[![JS Doc](https://img.shields.io/badge/doc-github_pages-green)](https://retailcrm.github.io/mg-bot-api-client-js/)
 
 # Message Gateway Bot API JS client
 
