@@ -1,12 +1,10 @@
 [![Build Status](https://github.com/retailcrm/mg-bot-api-client-js/workflows/ci/badge.svg)](https://github.com/retailcrm/mg-bot-api-client-js/actions)
-[![Coverage](https://img.shields.io/codecov/c/gh/retailcrm/mg-bot-api-client-js/master.svg?logo=codecov)](https://codecov.io/gh/retailcrm/mg-bot-api-client-js)
-[![Latest stable](https://img.shields.io/npm/v/mg-api-client.svg)](https://npmjs.com/package/mg-api-client)
-[![Node version](https://img.shields.io/node/v/mg-api-client.svg)](https://www.npmjs.com/package/mg-api-client)
+[![Coverage](https://img.shields.io/codecov/c/gh/retailcrm/mg-bot-api-client-js/master.svg?logo=codecov&logoColor=white)](https://codecov.io/gh/retailcrm/mg-bot-api-client-js)
+[![Latest stable](https://img.shields.io/npm/v/mg-api-client.svg?logo=npm&logoColor=white)](https://npmjs.com/package/mg-api-client)
+[![Node version](https://img.shields.io/node/v/mg-api-client.svg?logo=node.js&logoColor=white)](https://www.npmjs.com/package/mg-api-client)
 [![JS Doc](https://img.shields.io/badge/doc-github_pages-green)](https://retailcrm.github.io/mg-bot-api-client-js/)
 
-# Message Gateway Bot API JS client
-
-This is js retailCRM bot API client.
+# Message Gateway Bot API JavaScript client
 
 # Installation
 ```

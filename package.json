@@ -1,9 +1,9 @@
 {
   "name": "mg-api-client",
-  "description": "JS client for retailCRM Bot API",
+  "description": "JavaScript client for Message Gateway Bot API",
   "tags": [
     "API",
-    "retailCRM",
+    "RetailCRM",
     "Bot",
     "Chat"
   ],
@@ -14,7 +14,7 @@
     "test": "./node_modules/.bin/nyc ./node_modules/.bin/_mocha --require @babel/register ./tests/.",
     "report-coverage": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
-  "author": "retailCRM",
+  "author": "RetailCRM",
   "license": "MIT",
   "main": "./dist/index.js",
   "bugs": {
